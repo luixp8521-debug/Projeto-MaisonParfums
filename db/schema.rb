@@ -25,7 +25,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_05_161032) do
     t.bigint "pedido_id", null: false
     t.bigint "perfume_id", null: false
     t.integer "quantidade"
-    t.decimal "preco_unitario"
+    t.decimal "preco_unitario", precision: 10, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["pedido_id"], name: "index_item_pedidos_on_pedido_id"
@@ -46,7 +46,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_05_161032) do
     t.bigint "pedido_id", null: false
     t.bigint "perfume_id", null: false
     t.integer "quantidade"
-    t.decimal "preco_unitario"
+    t.decimal "preco_unitario", precision: 10, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["pedido_id"], name: "index_itens_pedidos_on_pedido_id"
@@ -55,7 +55,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_05_161032) do
 
   create_table "pedidos", force: :cascade do |t|
     t.bigint "usuario_id", null: false
-    t.decimal "valor_total"
+    t.decimal "valor_total", precision: 10, scale: 2
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
