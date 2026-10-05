@@ -1,0 +1,2 @@
+class ItensCarrinhoController < ApplicationController
+end
