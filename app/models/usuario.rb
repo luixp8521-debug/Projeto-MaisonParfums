@@ -1,12 +1,15 @@
 class Usuario < ApplicationRecord
-  has_secure_password
-  has_one :carrinho, dependent: :destroy
-  has_many :pedidos, dependent: :destroy
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
 
-  validates :email, presence: true, uniqueness: true
+  encrypts :telefone
 
   enum :role, {
-      cliente: 1,
-      admin: 2
-  }
+     cliente: "cliente",
+     admin: "admin"
+    }
+  validates :nome, presence: true
+  validates :telefone, presence: true
 end
