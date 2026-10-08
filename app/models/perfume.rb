@@ -8,15 +8,17 @@ class Perfume < ApplicationRecord
   validates :preco, presence: true, numericality: { greater_than: 0 }
 
   enum :categoria, {
-    feminino: 1,
-    masculino: 2,
-    unissex: 3
+    feminino: "feminino",
+    masculino: "masculino",
+    unissex: "unissex"
   }
 
+  #criar um enum de fragacia
+
   enum :tipo, {
-    tamanho_2ml: 1,
-    tamanho_5ml: 2,
-    tamanho_10ml: 3,
-    lacrado: 4
+    tamanho_2ml: "tamanho_2ml",
+    tamanho_5ml: "tamanho_5ml",
+    tamanho_10ml: "tamanho_10ml",
+    lacrado: "lacrado"
   }
 end
