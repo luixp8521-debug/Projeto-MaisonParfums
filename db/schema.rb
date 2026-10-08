@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_10_05_161032) do
+ActiveRecord::Schema[8.1].define(version: 2026_10_08_013156) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -19,17 +19,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_05_161032) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["usuario_id"], name: "index_carrinhos_on_usuario_id"
-  end
-
-  create_table "item_pedidos", force: :cascade do |t|
-    t.bigint "pedido_id", null: false
-    t.bigint "perfume_id", null: false
-    t.integer "quantidade"
-    t.decimal "preco_unitario", precision: 10, scale: 2
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["pedido_id"], name: "index_item_pedidos_on_pedido_id"
-    t.index ["perfume_id"], name: "index_item_pedidos_on_perfume_id"
   end
 
   create_table "itens_carrinhos", force: :cascade do |t|
@@ -46,7 +35,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_05_161032) do
     t.bigint "pedido_id", null: false
     t.bigint "perfume_id", null: false
     t.integer "quantidade"
-    t.decimal "preco_unitario", precision: 10, scale: 2
+    t.decimal "preco_unitario"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["pedido_id"], name: "index_itens_pedidos_on_pedido_id"
@@ -55,7 +44,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_05_161032) do
 
   create_table "pedidos", force: :cascade do |t|
     t.bigint "usuario_id", null: false
-    t.decimal "valor_total", precision: 10, scale: 2
+    t.decimal "valor_total"
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -78,15 +67,19 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_05_161032) do
   create_table "usuarios", force: :cascade do |t|
     t.string "nome"
     t.string "email"
-    t.string "password_digest"
-    t.string "role"
+    t.string "role", default: "cliente"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "telefone"
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.index ["email"], name: "index_usuarios_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true
   end
 
   add_foreign_key "carrinhos", "usuarios"
-  add_foreign_key "item_pedidos", "pedidos"
-  add_foreign_key "item_pedidos", "perfumes"
   add_foreign_key "itens_carrinhos", "carrinhos"
   add_foreign_key "itens_carrinhos", "perfumes"
   add_foreign_key "itens_pedidos", "pedidos"
