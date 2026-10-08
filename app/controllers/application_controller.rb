@@ -20,10 +20,10 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(usuario)
-    usuario.admin? ? root_path : perfil_path # troque root_path pela rota do admin
+    usuario.admin? ? admin_path : perfil_path
   end
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:nome, :telefone])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:nome, :telefone]) # rubocop:disable Layout/SpaceInsideArrayLiteralBrackets
   end
 end
