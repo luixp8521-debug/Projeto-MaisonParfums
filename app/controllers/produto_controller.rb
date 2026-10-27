@@ -44,9 +44,16 @@ class ProdutoController < ApplicationController
 
   def set_produto
     @produto = Produto.find(params[:id])
+<<<<<<< HEAD
+=======
   end
 
   def produto_params
     params.require(:produto).permit(:nome, :marca, :descricao, :categoria, :tamanho, :fragancia, :intensidade, :momento, :preco, :estoque, :frasco_mae_id)
+>>>>>>> upstream/main
+  end
+
+  def produto_params
+    params.require(:produto).permit(:nome, :marca, :descricao, :categoria, :tamanho, :fragancia, :intensidade, :momento, :piramide_olfativa, :concentracao, :preco, :estoque, :frasco_mae_id)#imagem
   end
 end

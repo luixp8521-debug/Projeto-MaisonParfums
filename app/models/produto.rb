@@ -9,10 +9,29 @@ class Produto < ApplicationRecord
   validates :nome, presence: true
   validates :preco, presence: true, numericality: { greater_than: 0 }
 
+<<<<<<< HEAD
+  =======
+=======
+>>>>>>> upstream/main
   after_create_commit do
     broadcast_prepend_to "produtos_#{categoria}", target: "produtos", partial: "produto/produto", locals: { produto: self }
   end
 
+<<<<<<< HEAD
+  enum :fragancia, {
+    floral: "floral",
+    amadeirada: "amadeirada",
+    citrica: "citrica",
+    oriental: "oriental",
+    fougere: "fougere",
+    chipre: "chipre",
+    gourmand: "gourmand",
+    aromatica: "aromatica",
+    aquatica: "aquatica"
+  }
+
+=======
+>>>>>>> upstream/main
   enum :categoria, {
     feminino: "Feminino",
     masculino: "Masculino",
@@ -50,6 +69,23 @@ class Produto < ApplicationRecord
     alta: "Alta"
   }
 
+<<<<<<< HEAD
+  enum :piramide_olfativa, {
+    saida: "saida",
+    coracao: "coracao",
+    base: "base"
+  }
+
+  enum :concentracao {
+    parfum: "parfum",
+    EDP: "EDP",
+    EDT: "EDT",
+    EDC: "EDC",
+    splash: "splash"
+  }
+
+=======
+>>>>>>> upstream/main
   # "tamanho_5ml" -> "5ml" -> 5 | "Lacrado" -> nil
   def volume_ml
     v = self.class.tamanhos[tamanho].to_i
@@ -84,4 +120,11 @@ class Produto < ApplicationRecord
       end
     end
   end
+<<<<<<< HEAD
 end
+>>>>>>> main
+
+end
+=======
+end
+>>>>>>> upstream/main
